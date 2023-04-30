@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <Target Name="CopyPackage" AfterTargets="Pack">
+    <Exec Command="xcopy $(ProjectDir)bin\Debug\$(ProjectName).$(Version).nupkg $(SolutionDir)nugets /Y /C /Q" />
+  </Target>
+</Project>
