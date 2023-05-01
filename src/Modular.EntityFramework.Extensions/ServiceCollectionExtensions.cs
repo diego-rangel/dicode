@@ -7,7 +7,7 @@ using Modular.EntityFramework.Core.Uow;
 
 namespace Modular.EntityFramework.Extensions;
 
-public static class DependencyInjection
+public static class ServiceCollectionExtensions
 {
     public static void AddDbContext<TContext>(this IServiceCollection services, Action<DbContextOptionsBuilder> optionsAction)
         where TContext : DbContext
