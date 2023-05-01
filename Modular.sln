@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.NetCore.Extensions"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.EntityFramework.Extensions", "src\Modular.EntityFramework.Extensions\Modular.EntityFramework.Extensions.csproj", "{393E3D5C-0F80-42C2-985F-E2AA2A055F15}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Domain.Core", "src\Modular.Domain.Core\Modular.Domain.Core.csproj", "{7BBBCB24-5676-48BB-B714-5031DAD4A6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.Ddd.Domain", "src\Modular.Ddd.Domain\Modular.Ddd.Domain.csproj", "{7BBBCB24-5676-48BB-B714-5031DAD4A6EA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modular.EntityFramework.Core", "src\Modular.EntityFramework.Core\Modular.EntityFramework.Core.csproj", "{AEB685B6-0B4F-4D6B-91EC-F71BA67DFE4E}"
 EndProject
