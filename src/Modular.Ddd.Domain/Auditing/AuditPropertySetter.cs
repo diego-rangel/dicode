@@ -1,5 +1,4 @@
-﻿using Modular.Core.DependencyInjection;
-using Modular.Core.Reflection;
+﻿using Modular.Core.Reflection;
 using Modular.Core.Timing;
 using Modular.Core.Users;
 using Modular.Ddd.Domain.Auditing.Contracts;

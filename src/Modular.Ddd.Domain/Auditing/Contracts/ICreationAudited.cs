@@ -3,41 +3,30 @@
 namespace Modular.Ddd.Domain.Auditing.Contracts
 {
     /// <summary>
-    /// A shortcut of <see cref="ICreationAudited{TEntityPrimaryKey, TUserKey}"/> for most used primary key type (<see cref="Guid"/>).
+    /// Defines a creation audited entity. It's primary key may not be "Id" or it may have a composite primary key.
+    /// Use <see cref="ICreationAudited{TEntityPrimaryKey, TUser, TUserKey}"/> where possible for better integration to repositories and other structures in the framework.
     /// </summary>
-    public interface ICreationAudited : 
-        ICreationAudited<Guid, Guid>
-    {
-
-    }
-
-    /// <summary>
-    /// This interface is implemented by entities that is wanted to store creation information (who and when created).
-    /// Creation time and creator user are automatically set when saving <see cref="Entity"/> to database.
-    /// </summary>
-    /// <typeparam name="TEntityPrimaryKey">The entity's key type</typeparam>
-    /// <typeparam name="TUserKey">The user's primary key type</typeparam>
-    public interface ICreationAudited<out TEntityPrimaryKey, TUserKey> : 
-        IEntity<TEntityPrimaryKey>,
+    public interface ICreationAudited<TUser, TUserKey> :
+        IEntity,
+        IHasCreationTime, 
         IMustHaveCreator<TUserKey>,
-        IHasCreationTime
-        where TUserKey : struct
-    {
-        
-    }
-
-    /// <summary>
-    /// Adds navigation properties to <see cref="ICreationAudited{TUser,TUserKey}"/> interface for user.
-    /// </summary>
-    /// <typeparam name="TEntityPrimaryKey">The entity's key type</typeparam>
-    /// <typeparam name="TUserKey">The user's primary key type</typeparam>
-    /// <typeparam name="TUser">Type of the user</typeparam>
-    public interface ICreationAudited<out TEntityPrimaryKey, TUserKey, TUser> : 
-        ICreationAudited<TEntityPrimaryKey, TUserKey>,
         IMustHaveCreatorUser<TUser>
         where TUser : IEntity<TUserKey>
-        where TUserKey : struct
     {
-        
+
+    }
+
+    /// <summary>
+    /// Defines a creation audited entity with a single primary key with "Id" property.
+    /// </summary>
+    /// <typeparam name="TEntityPrimaryKey">Type of the primary key of the entity</typeparam>
+    /// <typeparam name="TUser">Type of the user</typeparam>
+    /// <typeparam name="TUserKey">The user's primary key type</typeparam>
+    public interface ICreationAudited<out TEntityPrimaryKey, TUser, TUserKey> :
+        ICreationAudited<TUser, TUserKey>,
+        IEntity<TEntityPrimaryKey>
+        where TUser : IEntity<TUserKey>
+    {
+
     }
 }

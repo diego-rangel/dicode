@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Modular.FluentValidation.Core\Modular.FluentValidation.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

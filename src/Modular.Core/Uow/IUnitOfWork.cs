@@ -1,4 +1,4 @@
-﻿namespace Modular.Ddd.Domain.Uow;
+﻿namespace Modular.Core.Uow;
 
 public interface IUnitOfWork
 {

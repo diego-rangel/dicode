@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Domain.Core.Uow;
+using Modular.Core.Uow;
 
 namespace Modular.EntityFramework.Core.Uow;
 

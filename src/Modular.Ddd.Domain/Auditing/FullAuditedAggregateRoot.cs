@@ -4,47 +4,41 @@ using Modular.Ddd.Domain.Entities;
 namespace Modular.Ddd.Domain.Auditing
 {
     /// <summary>
-    /// A shortcut of <see cref="FullAuditedAggregateRoot{TEntityPrimaryKey, TUserKey}"/> for most used primary key type (<see cref="Guid"/>).
+    /// Implements <see cref="IFullAudited{TUser,TUserKey}"/> to be a base class for full-audited entities.
     /// </summary>
-    public abstract class FullAuditedAggregateRoot : FullAuditedAggregateRoot<Guid, Guid>
-    {
-        
-    }
-
-    /// <summary>
-    /// Implements <see cref="IFullAudited"/> to be a base class for full-audited entities.
-    /// </summary>
-    /// <typeparam name="TEntityPrimaryKey">The entity's key type</typeparam>
+    /// <typeparam name="TUser">Type of the user</typeparam>
     /// <typeparam name="TUserKey">The user's primary key type</typeparam>
-    public abstract class FullAuditedAggregateRoot<TEntityPrimaryKey, TUserKey> :
-        AuditedAggregateRoot<TEntityPrimaryKey, TUserKey>, 
-        IFullAudited<TEntityPrimaryKey, TUserKey>
-        where TUserKey : struct
+    public abstract class FullAuditedAggregateRoot<TUser, TUserKey> :
+        AuditedAggregateRoot<TUser, TUserKey>,
+        IFullAudited<TUser, TUserKey>
+        where TUser : IEntity<TUserKey>
     {
-        /// <inheritdoc/>
-        public TUserKey DeleterId { get; set; }
-
         /// <inheritdoc/>
         public DateTime? DeletionTime { get; set; }
+
+        /// <inheritdoc/>
+        public TUserKey? DeleterId { get; set; }
+
+        /// <inheritdoc/>
+        public TUser DeleterUser { get; set; } = default!;
     }
 
     /// <summary>
     /// Implements <see cref="IFullAudited{TEntityPrimaryKey, TUserKey, TUser}"/> to be a base class for full-audited entities.
     /// </summary>
     /// <typeparam name="TEntityPrimaryKey">The entity's key type</typeparam>
-    /// <typeparam name="TUserKey">The user's primary key type</typeparam>
     /// <typeparam name="TUser">Type of the user</typeparam>
-    public abstract class FullAuditedAggregateRoot<TEntityPrimaryKey, TUserKey, TUser> :
-        FullAuditedAggregateRoot<TEntityPrimaryKey, TUserKey>, 
-        IFullAudited<TEntityPrimaryKey, TUserKey, TUser>
+    /// <typeparam name="TUserKey">The user's primary key type</typeparam>
+    public abstract class FullAuditedAggregateRoot<TEntityPrimaryKey, TUser, TUserKey> :
+        AuditedAggregateRoot<TEntityPrimaryKey, TUser, TUserKey>,
+        IFullAudited<TEntityPrimaryKey, TUser, TUserKey>
         where TUser : IEntity<TUserKey>
-        where TUserKey : struct
     {
         /// <inheritdoc/>
-        public TUser CreatorUser { get; set; } = default!;
+        public DateTime? DeletionTime { get; set; }
 
         /// <inheritdoc/>
-        public TUser ModifierUser { get; set; } = default!;
+        public TUserKey? DeleterId { get; set; }
 
         /// <inheritdoc/>
         public TUser DeleterUser { get; set; } = default!;

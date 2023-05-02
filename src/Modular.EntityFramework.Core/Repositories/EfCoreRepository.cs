@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Modular.Domain.Core.Entities;
+using Modular.Ddd.Domain.Entities;
 
 namespace Modular.EntityFramework.Core.Repositories;
 

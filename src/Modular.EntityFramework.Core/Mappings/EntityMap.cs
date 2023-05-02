@@ -1,9 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Modular.Domain.Core.Entities;
+using Modular.Ddd.Domain.Entities;
 
 namespace Modular.EntityFramework.Core.Mappings
 {
+    public abstract class EntityMap<TEntity> : IEntityTypeConfiguration<TEntity>
+        where TEntity : Entity
+    {
+        public void Configure(EntityTypeBuilder<TEntity> builder)
+        {
+            ConfigureEntityBuilder(builder);
+        }
+
+        public abstract void ConfigureEntityBuilder(EntityTypeBuilder<TEntity> builder);
+    }
+
     public abstract class EntityMap<TEntity, TEntityKey> : IEntityTypeConfiguration<TEntity>
         where TEntity : Entity<TEntityKey>
     {
@@ -16,11 +27,5 @@ namespace Modular.EntityFramework.Core.Mappings
         }
 
         public abstract void ConfigureEntityBuilder(EntityTypeBuilder<TEntity> builder);
-    }
-
-    public abstract class EntityMap<TEntity> : EntityMap<TEntity, int>
-        where TEntity : Entity<int>
-    {
-
     }
 }

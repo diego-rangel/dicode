@@ -1,9 +1,18 @@
 <Project>
   <PropertyGroup>
 	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageIcon>icon.png</PackageIcon>
+	<Version>1.0.8</Version>
   </PropertyGroup>
   
   <Target Name="CopyPackage" AfterTargets="Pack">
-    <Exec Command="xcopy $(ProjectDir)bin\Debug\$(ProjectName).$(Version).nupkg $(SolutionDir)nugets /Y /C /Q" />
-  </Target>
+    <Exec Command="nuget add &quot;$(ProjectDir)bin\\Debug\\$(ProjectName).$(PackageVersion).nupkg&quot; -Source &quot;C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\&quot;" />
+  </Target> 
+  
+  <ItemGroup>
+    <None Include="..\..\assets\icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>

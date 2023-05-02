@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Modular.Ddd.Domain\Modular.Ddd.Domain.csproj" />
+    <ProjectReference Include="..\Modular.Ddd.Application\Modular.Ddd.Application.csproj" />
   </ItemGroup>
 
 </Project>

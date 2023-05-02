@@ -3,38 +3,30 @@
 namespace Modular.Ddd.Domain.Auditing.Contracts
 {
     /// <summary>
-    /// A shortcut of <see cref="IFullAudited{TEntityPrimaryKey, TUserKey}"/> for most used primary key type (<see cref="Guid"/>).
+    /// Defines a full audited entity. It's primary key may not be "Id" or it may have a composite primary key.
+    /// Use <see cref="IFullAudited{TEntityPrimaryKey, TUser, TUserKey}"/> where possible for better integration to repositories and other structures in the framework.
     /// </summary>
-    public interface IFullAudited : IFullAudited<Guid, Guid>
-    {
-
-    }
-
-    /// <summary>
-    /// This interface is implemented by entities which must be full audited.
-    /// </summary>
-    /// <typeparam name="TEntityPrimaryKey">The entity's key type</typeparam>
+    /// <typeparam name="TUser">Type of the user</typeparam>
     /// <typeparam name="TUserKey">The user's primary key type</typeparam>
-    public interface IFullAudited<out TEntityPrimaryKey, TUserKey> : 
-        IAudited<TEntityPrimaryKey, TUserKey>, 
-        IDeletionAudited<TEntityPrimaryKey, TUserKey>
-        where TUserKey : struct
+    public interface IFullAudited<TUser, TUserKey> : 
+        IAudited<TUser, TUserKey>, 
+        IDeletionAudited<TUser, TUserKey>
+        where TUser : IEntity<TUserKey>
     {
 
     }
 
     /// <summary>
-    /// Adds navigation properties to <see cref="IFullAudited"/> interface for user.
+    /// Defines a full audited entity with a single primary key with "Id" property.
     /// </summary>
     /// <typeparam name="TEntityPrimaryKey">The entity's key type</typeparam>
     /// <typeparam name="TUserKey">The user's primary key type</typeparam>
     /// <typeparam name="TUser">Type of the user</typeparam>
-    public interface IFullAudited<out TEntityPrimaryKey, TUserKey, TUser> : 
-        IFullAudited<TEntityPrimaryKey, TUserKey>, 
-        IAudited<TEntityPrimaryKey, TUserKey, TUser>, 
-        IDeletionAudited<TEntityPrimaryKey, TUserKey, TUser>
+    public interface IFullAudited<out TEntityPrimaryKey, TUser, TUserKey> :
+        IFullAudited<TUser, TUserKey>,
+        IAudited<TEntityPrimaryKey, TUser, TUserKey>, 
+        IDeletionAudited<TEntityPrimaryKey, TUser, TUserKey>
         where TUser : IEntity<TUserKey>
-        where TUserKey : struct
     {
 
     }

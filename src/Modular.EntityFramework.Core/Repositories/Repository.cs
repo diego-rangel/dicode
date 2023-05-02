@@ -1,8 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using Modular.Domain.Core.Auditing.Contracts;
-using Modular.Domain.Core.Entities;
-using Modular.Domain.Core.Repositories;
+using Modular.Ddd.Domain.Auditing.Contracts;
+using Modular.Ddd.Domain.Entities;
+using Modular.Ddd.Domain.Repositories;
 
 namespace Modular.EntityFramework.Core.Repositories;
 
